@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import {useRef} from "react";
 import "./CreateAccount.css";
 import Nav from "../NavigationBar/NavigationBar";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
@@ -7,6 +8,7 @@ export default function CreateAccount() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repassword, setRePassword] = useState("");
+  let btnRef = useRef();
 
   function validateForm() {
     return password === repassword && email.length > 0 && password.length > 6;
@@ -14,6 +16,12 @@ export default function CreateAccount() {
 
   function handleSubmit(event) {
     event.preventDefault();
+  }
+
+  const onBtnClick = e => {
+    if(btnRef.current){
+      btnRef.current.setAttribute("disabled", "disabled");
+    }
   }
   
   return (
@@ -47,7 +55,7 @@ export default function CreateAccount() {
             type="password"
           />
         </FormGroup><br />
-        <Button block bsSize="large" disabled={!validateForm()} type="submit">
+        <Button block bsSize="large" disabled={!validateForm()} type="submit" ref={btnRef} onClick={onBtnClick}>
           Submit
         </Button>
       </form>

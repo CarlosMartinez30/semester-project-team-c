@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import {useRef} from "react";
 import "./LogIn.css";
 import Nav from "../NavigationBar/NavigationBar";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
@@ -6,6 +7,7 @@ import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  let btnRef = useRef();
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
@@ -13,6 +15,12 @@ export default function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
+  }
+
+  const onBtnClick = e => {
+    if(btnRef.current){
+      btnRef.current.setAttribute("disabled", "disabled");
+    }
   }
   
   return (
@@ -38,7 +46,7 @@ export default function Login() {
             type="password"
           />
         </FormGroup><br />
-        <Button block bsSize="large" disabled={!validateForm()} type="submit">
+        <Button block bsSize="large" disabled={!validateForm()} type="submit" ref={btnRef} onClick={onBtnClick}>
           Login
         </Button>
       </form>
