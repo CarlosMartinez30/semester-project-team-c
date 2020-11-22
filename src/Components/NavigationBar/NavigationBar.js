@@ -32,7 +32,7 @@ function NavigationBar() {
             <Nav.Link href="/meetourguides">Meet our Guides</Nav.Link>
             <Nav.Link href="/createguideaccount">Become a Guide</Nav.Link>
             <Nav.Link href="/tours">Tours</Nav.Link>
-            <Nav.Link href="/tours">Profile</Nav.Link>
+            <Nav.Link href="/CustomerProfile">Profile</Nav.Link>
             <Nav.Link href="/home">LogOut</Nav.Link>
           </Nav>
         </Navbar.Collapse>
